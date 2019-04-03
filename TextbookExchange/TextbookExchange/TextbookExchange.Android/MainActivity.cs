@@ -17,8 +17,9 @@ namespace TextbookExchange.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            //Comment to test GitHub
-            //Test 2
+            //Comment to test GitHub by Axel
+            //Test 2 by Axel
+            //Test 3 by Axel
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
