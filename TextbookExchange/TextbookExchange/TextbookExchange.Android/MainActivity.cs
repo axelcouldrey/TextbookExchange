@@ -18,6 +18,7 @@ namespace TextbookExchange.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             //Comment to test GitHub
+            //Test 2
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
