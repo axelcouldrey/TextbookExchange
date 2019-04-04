@@ -23,6 +23,7 @@ namespace TextbookExchange.Droid
             //Test 4 by Hohua
             //Test 5 by Axel
             //Test 6 by Sachit
+            //Test 7 by Axel
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
