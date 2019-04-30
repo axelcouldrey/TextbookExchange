@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="TextbookExchange.UserEnvironment">
+    <!--Pages can be added as references or inline-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout" Clicked="OnLogoutButtonClicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage Title="My Profile" >
+            <StackLayout>
+                <Label Text="My Profile Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+        </ContentPage>
+        <ContentPage Title="My Listings" >
+            <StackLayout>
+                <Label Text="My Listing Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <Button Text="Add Book" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnAddBookButtonClicked"/>
+            </StackLayout>
+        </ContentPage>
+        <ContentPage Title="Public Listing Form" >
+            <StackLayout>
+                <Label Text="Public Listing Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+        </ContentPage>
+</TabbedPage>
