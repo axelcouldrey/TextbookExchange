@@ -13,7 +13,6 @@ namespace UnitTestProject2
     {
         public UnitTest2()
         {
-
             //
             // TODO: Add constructor logic here
             //
