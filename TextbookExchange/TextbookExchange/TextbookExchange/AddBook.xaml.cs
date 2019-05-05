@@ -26,18 +26,17 @@ namespace TextbookExchange
             //Navigation.InsertPageBefore(new AddBook(), this);
             //await Navigation.PopAsync();
             SQLiteConnection conn;
-            conn.
-            InsertData(conn);
-            
+            //conn.
+            //InsertData(conn);
         }
 
 
 
         private void InsertData(SQLiteConnection conn)
         {
-            SQLiteCommand sqlite_cmd;
-            sqlite_cmd = conn.CreateCommand("DataTrigger Source = Dev.db;Version = 3;new= true;");
-            sqlite_cmd.CommandText = "INSERT INTO DevDB (Title, Author, YearPublish) VALUES('book title ', 1); ";sqlite_cmd.ExecuteQuery();
+            //SQLiteCommand sqlite_cmd;
+            //sqlite_cmd = conn.CreateCommand("DataTrigger Source = Dev.db;Version = 3;new= true;");
+            //sqlite_cmd.CommandText = "INSERT INTO DevDB (Title, Author, YearPublish) VALUES('book title ', 1); ";sqlite_cmd.ExecuteQuery();
 
 
         }

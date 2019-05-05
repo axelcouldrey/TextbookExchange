@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="StartAndExpand">
             <Label Text="Username" />
-            <Entry x:Name="usernameEntry" Placeholder="username" />
+            <Entry x:Name="usernameEntry" />
             <Label Text="Password" />
             <Entry x:Name="passwordEntry" IsPassword="true" />
             <Label Text="Email address" />

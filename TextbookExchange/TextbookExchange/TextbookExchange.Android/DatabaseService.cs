@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -20,7 +21,7 @@ namespace TextbookExchange.Droid
 
         }
 
-        public SQLite.Net.SQLiteConnection IDBInterface.CreateConnection()
+        public SQLiteConnection CreateConnection()
         {
             var sqliteFilename = "UserDatabase.db";
             string documentsDirectoryPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
@@ -42,10 +43,11 @@ namespace TextbookExchange.Droid
                     }
                 }
             }
-            var plat = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
-            var conn = new SQLite.Net.SQLiteConnection(plat, path);
+            //var plat = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
+            //var conn = new SQLite.Net.SQLiteConnection(plat, path);
 
-            return conn;
+            //return conn;
+            return null;
         }
 
         void ReadWriteStream(Stream readStream, Stream writeStream)

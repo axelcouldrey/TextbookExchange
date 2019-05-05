@@ -21,7 +21,7 @@ namespace TextbookExchange
         {
             var user = new User
             {
-                Username = usernameEntry.Text,
+                UserName = usernameEntry.Text,
                 Password = passwordEntry.Text
             };
 
@@ -34,14 +34,20 @@ namespace TextbookExchange
             }
             else
             {
-                messageLabel.Text = "Login failed";
+                LoginLabel.Text = "Login failed";
                 passwordEntry.Text = string.Empty;
             }
         }
 
+        async void OnFacebookButtonClicked(object sender, EventArgs e)
+        {
+            //add await to external signup here.
+        }
+
         bool AreCredentialsCorrect(User user)
         {
-            return user.Username == Constants.Username && user.Password == Constants.Password;
+            //Check each user name for match - then subseqently if password matches.
+            return user.UserName == Constants.Username && user.Password == Constants.Password;
         }
     }
 }

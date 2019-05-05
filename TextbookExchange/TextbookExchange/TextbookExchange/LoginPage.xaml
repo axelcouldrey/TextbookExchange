@@ -7,11 +7,13 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="StartAndExpand">
             <Label Text="Username" />
-            <Entry x:Name="usernameEntry" Placeholder="username" />
+            <Entry x:Name="usernameEntry" />
             <Label Text="Password" />
             <Entry x:Name="passwordEntry" IsPassword="true" />
             <Button Text="Login" Clicked="OnLoginButtonClicked" />
-            <Label x:Name="messageLabel" />
+            <Label x:Name="LoginLabel" />
+            <Button Text="Login with Facebook" Clicked="OnFacebookButtonClicked" />
+            <Label x:Name="SocialMediaLogin" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -16,7 +16,7 @@ namespace TextbookExchange
         {
             var user = new User()
             {
-                Username = usernameEntry.Text,
+                UserName = usernameEntry.Text,
                 Password = passwordEntry.Text,
                 Email = emailEntry.Text
             };
@@ -42,7 +42,7 @@ namespace TextbookExchange
 
         bool AreDetailsValid(User user)
         {
-            return (!string.IsNullOrWhiteSpace(user.Username) && !string.IsNullOrWhiteSpace(user.Password) && !string.IsNullOrWhiteSpace(user.Email) && user.Email.Contains("@"));
+            return (!string.IsNullOrWhiteSpace(user.UserName) && !string.IsNullOrWhiteSpace(user.Password) && !string.IsNullOrWhiteSpace(user.Email) && user.Email.Contains("@"));
         }
     }
 }
