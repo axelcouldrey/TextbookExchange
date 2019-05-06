@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace TextbookExchange
@@ -46,20 +47,15 @@ namespace TextbookExchange
 
         bool AreCredentialsCorrect(User user)
         {
-            var db =  
-            var data = db.Table<Users>(); //Call table
-            var data1 = data.Where(x => x.UserName == usernameEntry.Text && x.Password == passwordEntry.Text);
+            
+            var db = new SQLiteConnection(App.DB_PATH);
+            var result = db.Table<User>().Where(x => x.UserName == usernameEntry.Text && x.Password == passwordEntry.Text).ToList();
 
-            if (data1 != null)
-                LoginLabel.Text = "Login Success";
-            else
-                LoginLabel.Text = "Username or Password invalid";
+            return (result.Count() > 0);
+                
 
-
-
-
-            //Check each user name for match - then subseqently if password matches.
-            return user.UserName == Constants.Username && user.Password == Constants.Password;
+            //Check each user name for match - then subseqently if password matches.??
+           
         }
     }
 }

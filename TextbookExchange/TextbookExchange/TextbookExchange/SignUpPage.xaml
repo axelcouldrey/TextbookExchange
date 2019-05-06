@@ -4,7 +4,7 @@
              x:Class="TextbookExchange.SignUpPage"
              Title="Sign Up Form">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Back" Clicked="OnBackButtonClicked" />
+        <ToolbarItem Text="Already have an account?" Clicked="OnBackButtonClicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout VerticalOptions="StartAndExpand">

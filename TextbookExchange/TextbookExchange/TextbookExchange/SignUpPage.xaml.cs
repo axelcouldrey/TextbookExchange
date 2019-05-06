@@ -20,11 +20,10 @@ namespace TextbookExchange
                 UserName = usernameEntry.Text,
                 Email = emailEntry.Text,
                 Password = passwordEntry.Text,
-                ConfirmPassword = confirmPasswordEntry.Text
+                ConfirmPassword = confirmPasswordEntry.Text,
             };
 
             // Sign up logic goes here
-
             if (AreDetailsValid(user))
             {
                 var rootPage = Navigation.NavigationStack.FirstOrDefault();
@@ -34,11 +33,11 @@ namespace TextbookExchange
                     db.CreateTable<User>();
                     var numberOfRows = db.Insert(user);
 
-                    //if (numberOfRows > 0)
-                    //    DisplayAlert("User added");
+                    if (numberOfRows > 0)
+                        messageLabel.Text = "User added";
+                    else
+                        messageLabel.Text = "Failure to register (databse error)";
                 }
-
-                //count users to give new user a new PK of lastUser++ along with all correctly entered information.
 
                 if (rootPage != null)
                 {
@@ -55,7 +54,8 @@ namespace TextbookExchange
 
         async void OnBackButtonClicked(object sender, EventArgs e)
         {
-
+            Navigation.InsertPageBefore(new Profile(), Navigation.NavigationStack.First());
+            await Navigation.PopToRootAsync();
         }
 
         bool AreDetailsValid(User user)
