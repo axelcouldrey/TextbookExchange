@@ -14,7 +14,25 @@
             <StackLayout>
                 <Label Text="My Listing Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
                 <Button Text="Add Book" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnAddBookButtonClicked"/>
+            
+                <ListView x:Name="bookListings">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Title}"/>
+                                    <Button Text="View"
+                                            HorizontalOptions="EndAndExpand"
+                                            Clicked="OnListingClicked"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
+            
+            
+        
         </ContentPage>
         <ContentPage Title="Public Listing Form" >
             <StackLayout>

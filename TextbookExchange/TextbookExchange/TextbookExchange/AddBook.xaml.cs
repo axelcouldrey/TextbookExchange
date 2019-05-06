@@ -9,36 +9,39 @@ namespace TextbookExchange
 {
     public partial class AddBook : ContentPage
     {
-        private SQLiteConnection conn;
 
         public AddBook()
         {
             InitializeComponent();
-            Contract.Ensures(Contract.Result<SQLiteConnection>() != null);
-
-
-            conn = new SQLiteConnection("DataTrigger Source = Dev.db;Version = 3;new= true;");
         }
 
         async void OnSubmitButtonClicked(object sender, EventArgs e)
         {
             App.IsUserLoggedIn = false;
-            //Navigation.InsertPageBefore(new AddBook(), this);
-            //await Navigation.PopAsync();
-            SQLiteConnection conn;
-            //conn.
-            //InsertData(conn);
-        }
 
+            Book book = new Book()
+            {
+                Title = titleEntry.Text,
+                Author = authorEntry.Text,
+                Published = yearEntry.Text
+            };
 
+            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
+            {
+                conn.CreateTable<Book>();
+                var numberOfRows = conn.Insert(book);
 
-        private void InsertData(SQLiteConnection conn)
-        {
-            //SQLiteCommand sqlite_cmd;
-            //sqlite_cmd = conn.CreateCommand("DataTrigger Source = Dev.db;Version = 3;new= true;");
-            //sqlite_cmd.CommandText = "INSERT INTO DevDB (Title, Author, YearPublish) VALUES('book title ', 1); ";sqlite_cmd.ExecuteQuery();
+                if (numberOfRows > 0)
+                {
+                   await DisplayAlert("Success", "Added book", "Continue");
+                }
+                else
+                {
+                    await DisplayAlert("Failed", "Fail to add book", "Continue");
+                }
+            }
 
-
+            await Navigation.PushAsync(new UserEnvironment());
         }
     }
 }

@@ -17,6 +17,18 @@ namespace TextbookExchange
             InitializeComponent();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
+            {
+                conn.CreateTable<Book>();
+                var books = conn.Table<Book>().ToList();
+                bookListings.ItemsSource = books;
+            }
+        }
+
         async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
             App.IsUserLoggedIn = false;
@@ -30,6 +42,17 @@ namespace TextbookExchange
             App.IsUserLoggedIn = false;
             Navigation.InsertPageBefore(new AddBook(), this);
             await Navigation.PopAsync();
+        }
+
+        async void OnListingClicked(object sender, EventArgs e)
+        {
+            //var db = new SQLite.SQLiteConnection(App.DB_PATH);
+            //var result = db.Table<Book>().Where()
+
+
+            await Navigation.PushAsync(new Listing());
+
+
         }
     }
 }
