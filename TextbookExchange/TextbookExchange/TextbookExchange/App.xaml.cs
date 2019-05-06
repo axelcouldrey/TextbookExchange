@@ -8,9 +8,28 @@ namespace TextbookExchange
     public partial class App : Application
     {
         public static bool IsUserLoggedIn { get; set; }
+        public static string DB_PATH = string.Empty;
 
         public App()
         {
+            InitializeComponent();
+
+            if (!IsUserLoggedIn)
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new MainPage());
+            }
+        }
+
+        public App(string dbPath)
+        {
+            InitializeComponent();
+
+            DB_PATH = dbPath;
+
             if (!IsUserLoggedIn)
             {
                 MainPage = new NavigationPage(new LoginPage());

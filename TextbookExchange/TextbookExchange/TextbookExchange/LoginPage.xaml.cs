@@ -1,6 +1,7 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
-
+using System.IO;
 using Xamarin.Forms;
 
 namespace TextbookExchange
@@ -19,14 +20,13 @@ namespace TextbookExchange
 
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            var user = new User
+            var user = new User()
             {
                 UserName = usernameEntry.Text,
                 Password = passwordEntry.Text
             };
 
-            var isValid = AreCredentialsCorrect(user);
-            if (isValid)
+            if (AreCredentialsCorrect(user))
             {
                 App.IsUserLoggedIn = true;
                 Navigation.InsertPageBefore(new UserEnvironment(), this);
@@ -46,6 +46,18 @@ namespace TextbookExchange
 
         bool AreCredentialsCorrect(User user)
         {
+            var db =  
+            var data = db.Table<Users>(); //Call table
+            var data1 = data.Where(x => x.UserName == usernameEntry.Text && x.Password == passwordEntry.Text);
+
+            if (data1 != null)
+                LoginLabel.Text = "Login Success";
+            else
+                LoginLabel.Text = "Username or Password invalid";
+
+
+
+
             //Check each user name for match - then subseqently if password matches.
             return user.UserName == Constants.Username && user.Password == Constants.Password;
         }

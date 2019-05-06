@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.IO;
 
 namespace TextbookExchange.Droid
 {
@@ -17,16 +18,16 @@ namespace TextbookExchange.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            //Comment to test GitHub by Axel
-            //Test 2 by Axel
-            //Test 3 by Axel
-            //Test 4 by Hohua
-            //Test 5 by Axel
-            //Test 6 by Sachit
-            //Test 7 by Axel
             base.OnCreate(savedInstanceState);
+
+            string fileName = "UserDatabase.db";
+            string fileLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string fullPath = Path.Combine(fileLocation, fileName);
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            LoadApplication(new App(fullPath));
         }
+
+        
     }
 }

@@ -6,14 +6,12 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout VerticalOptions="StartAndExpand">
-            <Label Text="Username" />
-            <Entry x:Name="usernameEntry" />
-            <Label Text="Password" />
-            <Entry x:Name="passwordEntry" IsPassword="true" />
+            <Entry x:Name="usernameEntry" Placeholder="Username"/>
+            <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true" />
             <Button Text="Login" Clicked="OnLoginButtonClicked" />
             <Label x:Name="LoginLabel" />
             <Button Text="Login with Facebook" Clicked="OnFacebookButtonClicked" />
-            <Label x:Name="SocialMediaLogin" />
+            <Label x:Name="SocialMediaLoginLabel" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

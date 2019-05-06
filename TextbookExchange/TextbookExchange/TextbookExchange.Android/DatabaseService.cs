@@ -11,21 +11,22 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using SQLite;
+using SQLitePCL;
+using TextbookExchange.Droid;
+using Xamarin.Forms;
 
+[assembly:Dependency(typeof(DatabaseService))]
 namespace TextbookExchange.Droid
 {
-    class DatabaseService: IDBInterface
+    public class DatabaseService: IDBInterface
     {
-        public DatabaseService()
-        {
-
-        }
-
-        public SQLiteConnection CreateConnection()
+        public SQLiteConnection GetConnection()
         {
             var sqliteFilename = "UserDatabase.db";
-            string documentsDirectoryPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string documentsDirectoryPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
             var path = Path.Combine(documentsDirectoryPath, sqliteFilename);
+            var connection = new SQLiteConnection(path);
+            return connection;
 
             // This is where we copy in our pre-created database
             if (!File.Exists(path))

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using Xamarin.Forms;
 
 namespace TextbookExchange
 {
     public partial class MainPage : ContentPage
     {
-
         public MainPage()
         {
             InitializeComponent();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
@@ -17,16 +18,28 @@ namespace TextbookExchange
             var user = new User()
             {
                 UserName = usernameEntry.Text,
+                Email = emailEntry.Text,
                 Password = passwordEntry.Text,
-                Email = emailEntry.Text
+                ConfirmPassword = confirmPasswordEntry.Text
             };
 
             // Sign up logic goes here
 
-            var signUpSucceeded = AreDetailsValid(user);
-            if (signUpSucceeded)
+            if (AreDetailsValid(user))
             {
                 var rootPage = Navigation.NavigationStack.FirstOrDefault();
+
+                using (var db = new SQLiteConnection((App.DB_PATH)))
+                {
+                    db.CreateTable<User>();
+                    var numberOfRows = db.Insert(user);
+
+                    //if (numberOfRows > 0)
+                    //    DisplayAlert("User added");
+                }
+
+                //count users to give new user a new PK of lastUser++ along with all correctly entered information.
+
                 if (rootPage != null)
                 {
                     App.IsUserLoggedIn = true;
@@ -40,9 +53,16 @@ namespace TextbookExchange
             }
         }
 
+        async void OnBackButtonClicked(object sender, EventArgs e)
+        {
+
+        }
+
         bool AreDetailsValid(User user)
         {
-            return (!string.IsNullOrWhiteSpace(user.UserName) && !string.IsNullOrWhiteSpace(user.Password) && !string.IsNullOrWhiteSpace(user.Email) && user.Email.Contains("@"));
+            return (!string.IsNullOrWhiteSpace(user.UserName) && !string.IsNullOrWhiteSpace(user.Email) 
+                && user.Email.Contains("@") && user.Email.Contains(".") 
+                && !string.IsNullOrWhiteSpace(user.Password) && user.ConfirmPassword.Equals(user.Password));
         }
     }
 }

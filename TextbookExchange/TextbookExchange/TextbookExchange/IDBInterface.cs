@@ -7,6 +7,6 @@ namespace TextbookExchange
 {
     public interface IDBInterface
     {
-        SQLiteConnection CreateConnection();
+        SQLiteConnection GetConnection();
     }
 }
