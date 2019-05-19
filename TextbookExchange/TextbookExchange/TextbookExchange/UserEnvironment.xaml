@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="TextbookExchange.UserEnvironment">
     <!--Pages can be added as references or inline-->
     <ContentPage.ToolbarItems>
@@ -13,7 +14,7 @@
         <ContentPage Title="My Listings" >
             <StackLayout>
                 <Label Text="My Listing Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                <Button Text="Add Book" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnAddBookButtonClicked"/>
+                <Button Text="Add Book" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnEditBookButtonClicked"/>
             
                 <ListView x:Name="bookListings">
                     <ListView.ItemTemplate>

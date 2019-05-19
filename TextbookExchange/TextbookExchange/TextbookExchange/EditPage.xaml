@@ -1,5 +1,35 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TextbookExchange.EditPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
-</ContentPage>
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="TextbookExchange.EditPage">
+    <ContentPage Title="Add Book" >
+        <StackLayout>
+            <Label Text="Add Book" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Update Book" >
+        <StackLayout>
+            <Label Text="Update Book Page" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            <Button Text="Update Book" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnAddBookButtonClicked"/>
+            <ListView x:Name="updateBook">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Title}"/>
+                                <Button Text="View"
+                                        HorizontalOptions="EndAndExpand"
+                                        Clicked="OnEditBookClicked"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+        <ContentPage Title="Delete Book" >
+            <StackLayout>
+                <Label Text="Delete Book Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+        </ContentPage>
+</TabbedPage>
