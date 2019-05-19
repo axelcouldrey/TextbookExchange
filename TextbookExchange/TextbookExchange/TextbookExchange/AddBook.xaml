@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TextbookExchange.AddBook"
-             BackgroundColor="Black">
+             BackgroundColor="White">
     
     <ScrollView VerticalOptions="StartAndExpand">
         
@@ -10,15 +10,14 @@
         <!-- Placeholder -->
         <Label Text="Add Book Form" 
                HorizontalOptions="Center" 
-               VerticalOptions="CenterAndExpand"
-               TextColor="Silver"/>
+               VerticalOptions="CenterAndExpand"/>
         
         <Label Text="Book Title" 
                HorizontalOptions="Center" 
-               VerticalOptions="CenterAndExpand"
-               TextColor="Silver"/>
+               VerticalOptions="CenterAndExpand"/>
             
-        <Entry Text="book title"
+        <Entry x:Name="titleEntry"
+               Text="book title"
                TextColor="#77d065" 
                HorizontalTextAlignment="Center"
                BackgroundColor="Gray" >
@@ -33,17 +32,17 @@
             
         <Label Text="Book Author" 
                HorizontalOptions="CenterAndExpand" 
-               VerticalOptions="CenterAndExpand"
-               TextColor="Silver"/>
-        <Entry Placeholder="book author"  
+               VerticalOptions="CenterAndExpand"/>
+        <Entry x:Name="authorEntry"
+               Placeholder="book author"  
                BackgroundColor="Gray" 
                HorizontalTextAlignment="Center"/>
         
         <Label Text="Year Published" 
                HorizontalOptions="Center" 
-               VerticalOptions="CenterAndExpand"
-               TextColor="Silver"/>
-        <Entry Placeholder="year published"
+               VerticalOptions="CenterAndExpand"/>
+        <Entry x:Name="yearEntry"
+               Placeholder="year published"
                HorizontalTextAlignment="Center"
                BackgroundColor="Gray" 
                ReturnType="Send"/>
