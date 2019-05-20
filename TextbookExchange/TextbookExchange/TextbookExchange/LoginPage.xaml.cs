@@ -47,12 +47,12 @@ namespace TextbookExchange
 
         bool AreCredentialsCorrect(User user)
         {
-            
-            var db = new SQLiteConnection(App.DB_PATH);
-            var result = db.Table<User>().Where(x => x.UserName == usernameEntry.Text && x.Password == passwordEntry.Text).ToList();
 
-            return (result.Count() > 0);
-                
+            //var db = new SQLiteConnection(App.DB_PATH);
+            //var result = db.Table<User>().Where(x => x.UserName == usernameEntry.Text && x.Password == passwordEntry.Text).ToList();
+
+            //return (result.Count() > 0);
+            return user.UserName == Constants.Username && user.Password == Constants.Password;    
 
             //Check each user name for match - then subseqently if password matches.??
            
