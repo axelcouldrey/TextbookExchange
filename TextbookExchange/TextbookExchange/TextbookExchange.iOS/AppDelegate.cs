@@ -30,6 +30,7 @@ namespace TextbookExchange.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(fullPath));
 
+
             return base.FinishedLaunching(app, options);
         }
     }

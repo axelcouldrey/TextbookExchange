@@ -3,14 +3,70 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="TextbookExchange.EditPage">
     <ContentPage Title="Add Book" >
-        <StackLayout>
-            <Label Text="Add Book" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout Margin="20">
+                <Label  
+                       HorizontalOptions="Center" 
+                       VerticalOptions="CenterAndExpand"/>
+                <Label Text="Title" 
+                       TextColor="Black"
+                       HorizontalOptions="Center" 
+                       VerticalOptions="CenterAndExpand"/>
+                <Entry x:Name="titleEntry"
+                       Text="title"
+                       TextColor="Gray"
+                       HorizontalTextAlignment="Center">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Suggestions,CapitalizeCharacter</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+                <Label Text="Author" 
+                       TextColor="Black"
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand"/>
+                <Entry x:Name="authorEntry"
+                       Text="author"
+                       TextColor="Gray"
+                       HorizontalTextAlignment="Center">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Suggestions,CapitalizeCharacter</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+                <Label Text="Year Published" 
+                       TextColor="Black"
+                       HorizontalOptions="Center" 
+                       VerticalOptions="CenterAndExpand"/>
+                <Entry x:Name="yearEntry"
+                       Text="year"
+                       TextColor="Gray"
+                       HorizontalTextAlignment="Center">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Suggestions,CapitalizeCharacter</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+                <Button Text="Add" HorizontalOptions="Center" 
+                        VerticalOptions="CenterAndExpand" 
+                        Clicked="OnAddBookButtonClicked" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage>
+    
     <ContentPage Title="Update Book" >
         <StackLayout>
             <Label Text="Update Book Page" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-            <Button Text="Update Book" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnAddBookButtonClicked"/>
+            <Button Text="Update Book" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnUpdateBookClicked"/>
             <ListView x:Name="updateBook">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -18,8 +74,7 @@
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Title}"/>
                                 <Button Text="View"
-                                        HorizontalOptions="EndAndExpand"
-                                        Clicked="OnEditBookClicked"/>
+                                        HorizontalOptions="EndAndExpand" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -27,9 +82,11 @@
             </ListView>
         </StackLayout>
     </ContentPage>
-        <ContentPage Title="Delete Book" >
-            <StackLayout>
-                <Label Text="Delete Book Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-            </StackLayout>
-        </ContentPage>
+    
+    <ContentPage Title="Delete Book" >
+        <StackLayout>
+            <Label Text="Delete Book Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            <Button Text="Delete" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnDeleteBookClicked"/>
+        </StackLayout>
+    </ContentPage>
 </TabbedPage>

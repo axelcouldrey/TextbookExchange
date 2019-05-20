@@ -14,7 +14,7 @@
         <ContentPage Title="My Listings" >
             <StackLayout>
                 <Label Text="My Listing Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                <Button Text="Add Book" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnEditBookButtonClicked"/>
+                <Button Text="Edit" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnEditBookButtonClicked"/>
             
                 <ListView x:Name="bookListings">
                     <ListView.ItemTemplate>

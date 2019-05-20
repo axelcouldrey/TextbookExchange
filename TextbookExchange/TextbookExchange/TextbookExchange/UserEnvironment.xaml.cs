@@ -40,7 +40,7 @@ namespace TextbookExchange
         async void OnEditBookButtonClicked(object sender, EventArgs e)
         {
             App.IsUserLoggedIn = false;
-            Navigation.InsertPageBefore(new AddBook(), this);
+            Navigation.InsertPageBefore(new EditPage(), this);
             await Navigation.PopAsync();
         }
 
