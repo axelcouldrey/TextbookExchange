@@ -153,7 +153,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\TextbookExchange\TextbookExchange.csproj">
-      <Project>{A4C00076-6228-482B-9062-9D37EF667DEE}</Project>
+      <Project>{EA170FB3-140A-4663-8B63-E79278AEACBA}</Project>
       <Name>TextbookExchange</Name>
     </ProjectReference>
   </ItemGroup>
