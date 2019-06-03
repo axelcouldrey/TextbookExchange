@@ -1,20 +1,26 @@
 ﻿using SQLite;
 using System;
+using System.Collections.Generic;
+
 namespace TextbookExchange
 {
+    [Table("Users")]
     public class User
     {
-        public int ID { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int UserID { get; set; }
 
-        [MaxLength(25)]
-        public string UserName { get; set; }
+        [NotNull]
+        public string Email { get; set; }
 
-        [MaxLength(15)]
+        [MaxLength(15), NotNull]
         public string Password { get; set; }
 
-        [MaxLength(15)]
-        public string ConfirmPassword { get; set; }
+        public string FirstName { get; set; }
 
-        public string Email { get; set; }
+        public string LastName { get; set; }
+
+        public string University { get; set; }
+
     }
 }

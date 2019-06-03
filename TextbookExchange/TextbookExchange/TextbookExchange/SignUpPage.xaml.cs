@@ -1,6 +1,4 @@
-﻿using SQLite;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -8,61 +6,80 @@ namespace TextbookExchange
 {
     public partial class SignUpPage : ContentPage
     {
+        private string confirmPassword;
+        private int EmailUsed;
+
         public SignUpPage()
         {
             InitializeComponent();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
+        //Method called when sign up button clicked
         async void OnSignUpButtonClicked(object sender, EventArgs e)
         {
             var user = new User()
             {
-                UserName = usernameEntry.Text,
                 Email = emailEntry.Text,
                 Password = passwordEntry.Text,
-                ConfirmPassword = confirmPasswordEntry.Text,
+                FirstName = firstName.Text,
+                LastName = lastName.Text,
+                University = university.Text
             };
 
-            // Sign up logic goes here
+            this.confirmPassword = confirmPasswordEntry.Text;
+
+            //Sign up logic checking if input details are valid
             if (AreDetailsValid(user))
             {
+                App.Database.SaveUser(user);
+                App.IsUserLoggedIn = true;
+
+                //await Navigation.PushAsync(new UserEnvironment());
+
+                //Navigation.InsertPageBefore(new UserEnvironment(), this);
+                //await Navigation.PopAsync();
+
                 var rootPage = Navigation.NavigationStack.FirstOrDefault();
 
-                using (var db = new SQLiteConnection((App.DB_PATH)))
-                {
-                    db.CreateTable<User>();
-                    var numberOfRows = db.Insert(user);
-
-                    if (numberOfRows > 0)
-                        messageLabel.Text = "User added";
-                    else
-                        messageLabel.Text = "Failure to register (databse error)";
-                }
 
                 if (rootPage != null)
                 {
                     App.IsUserLoggedIn = true;
-                    Navigation.InsertPageBefore(new Profile(), Navigation.NavigationStack.First());
-                    await Navigation.PopToRootAsync();
+                    Navigation.InsertPageBefore(new UserEnvironment(), this);
+                    await Navigation.PopAsync();
                 }
             }
             else
             {
-                messageLabel.Text = "Sign up failed";
+                if(EmailUsed == 1)
+                    messageLabel.Text = "E-mail already in Use";
+                else
+                    messageLabel.Text = "Please re-enter information correctly";
             }
         }
 
-        async void OnBackButtonClicked(object sender, EventArgs e)
-        {
-            Navigation.InsertPageBefore(new Profile(), Navigation.NavigationStack.First());
-            await Navigation.PopToRootAsync();
-        }
-
+        //Return true if details are valid(Email not already in use & inputs correct)
         bool AreDetailsValid(User user)
         {
-            return (!string.IsNullOrWhiteSpace(user.UserName) && !string.IsNullOrWhiteSpace(user.Email) 
-                && user.Email.Contains("@") && user.Email.Contains(".") 
-                && !string.IsNullOrWhiteSpace(user.Password) && user.ConfirmPassword.Equals(user.Password));
+            User temp = App.Database.GetUser(user.Email);
+
+            EmailUsed = 0;
+
+            if(temp == null)
+            {
+                return (!string.IsNullOrWhiteSpace(user.Email)
+                    && user.Email.Contains("@") && user.Email.Contains(".")
+                    && !string.IsNullOrWhiteSpace(user.Password) && this.confirmPassword.Equals(user.Password)
+                    && !string.IsNullOrEmpty(user.FirstName) && !string.IsNullOrEmpty(user.LastName) && !string.IsNullOrEmpty(user.University));
+            }
+
+            EmailUsed = 1;
+            return false;
         }
     }
 }

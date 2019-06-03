@@ -26,20 +26,20 @@ namespace TextbookExchange
                 Published = yearEntry.Text
             };
 
-            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
-            {
-                conn.CreateTable<Book>();
-                var numberOfRows = conn.Insert(book);
+            //using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
+            //{
+            //    conn.CreateTable<Book>();
+            //    var numberOfRows = conn.Insert(book);
 
-                if (numberOfRows > 0)
-                {
-                   await DisplayAlert("Success", "Added book", "Continue");
-                }
-                else
-                {
-                    await DisplayAlert("Failed", "Fail to add book", "Continue");
-                }
-            }
+            //    if (numberOfRows > 0)
+            //    {
+            //       await DisplayAlert("Success", "Added book", "Continue");
+            //    }
+            //    else
+            //    {
+            //        await DisplayAlert("Failed", "Fail to add book", "Continue");
+            //    }
+            //}
 
             await Navigation.PushAsync(new UserEnvironment());
         }

@@ -7,8 +7,8 @@
     </ContentPage.ToolbarItems>
     <ContentPage Title="My Profile" >
             <StackLayout>
-                <Label Text="My Profile Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-            </StackLayout>
+            <Label Text="My Profile Form" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        </StackLayout>
         </ContentPage>
         <ContentPage Title="My Listings" >
             <StackLayout>

@@ -5,16 +5,16 @@ using Xamarin.Forms;
 
 namespace TextbookExchange
 {
-    public partial class Listing : ContentPage
+    public partial class ListingPage : ContentPage
     {
         private Book book;
 
-        public Listing()
+        public ListingPage()
         {
             InitializeComponent();
         }
 
-        public Listing(string Title, string Author, string Published)
+        public ListingPage(string Title, string Author, string Published)
         {
             book = new Book
             {

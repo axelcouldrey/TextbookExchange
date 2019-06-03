@@ -7,8 +7,10 @@ namespace TextbookExchange
 {
     public partial class App : Application
     {
+        static DataAccess databse;
+
         public static bool IsUserLoggedIn { get; set; }
-        public static string DB_PATH = string.Empty;
+        //public static string DB_PATH = string.Empty;
 
         public App()
         {
@@ -24,21 +26,35 @@ namespace TextbookExchange
             }
         }
 
-        public App(string dbPath)
+        public static DataAccess Database
         {
-            InitializeComponent();
-
-            DB_PATH = dbPath;
-
-            if (!IsUserLoggedIn)
+            get
             {
-                MainPage = new NavigationPage(new LoginPage());
+                if(databse == null)
+                {
+                    databse = new DataAccess();
+                }
+
+                return databse;
             }
-            else
-            {
-                MainPage = new NavigationPage(new MainPage());
-            }
+
         }
+
+        //public App(string dbPath)
+        //{
+        //    InitializeComponent();
+
+        //    DB_PATH = dbPath;
+
+        //    if (!IsUserLoggedIn)
+        //    {
+        //        MainPage = new NavigationPage(new LoginPage());
+        //    }
+        //    else
+        //    {
+        //        MainPage = new NavigationPage(new MainPage());
+        //    }
+        //}
 
         protected override void OnStart()
         {

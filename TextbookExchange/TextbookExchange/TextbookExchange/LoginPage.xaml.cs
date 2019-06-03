@@ -1,8 +1,4 @@
-﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System;
 using Xamarin.Forms;
 
 namespace TextbookExchange
@@ -12,21 +8,25 @@ namespace TextbookExchange
         public LoginPage()
         {
             InitializeComponent();
-        }
 
-        async void OnSignUpButtonClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new SignUpPage());
+            //On constructor assign toolbar signup clickable icon
+            var toolbarItem = new ToolbarItem { Text = "Sign up" };
+
+            toolbarItem.Clicked += async (sender, e) =>
+                { await Navigation.PushAsync(new SignUpPage() { BindingContext = new User() }); };
+
+            ToolbarItems.Add(toolbarItem);
         }
 
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
             var user = new User()
             {
-                UserName = usernameEntry.Text,
+                Email = emailEntry.Text,
                 Password = passwordEntry.Text
             };
 
+     
             if (AreCredentialsCorrect(user))
             {
                 App.IsUserLoggedIn = true;
@@ -40,22 +40,20 @@ namespace TextbookExchange
             }
         }
 
-        async void OnFacebookButtonClicked(object sender, EventArgs e)
+        //Checking if the user is already in the databse and if the passwarod is correct
+        public bool AreCredentialsCorrect(User user)
         {
-            //add await to external signup here.
-        }
+            User temp = App.Database.GetUser(user.Email);
 
-        bool AreCredentialsCorrect(User user)
-        {
-            
-            var db = new SQLiteConnection(App.DB_PATH);
-            var result = db.Table<User>().Where(x => x.UserName == usernameEntry.Text && x.Password == passwordEntry.Text).ToList();
+            if(temp == null)
+                return false;
+            else
+            {
+                if(temp.Password.Equals(user.Password))
+                    return true;
 
-            return (result.Count() > 0);
-                
-
-            //Check each user name for match - then subseqently if password matches.??
-           
+                return false;
+            }
         }
     }
 }

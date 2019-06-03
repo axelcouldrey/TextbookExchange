@@ -21,12 +21,15 @@ namespace TextbookExchange
         {
             base.OnAppearing();
 
-            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
-            {
-                conn.CreateTable<Book>();
-                var books = conn.Table<Book>().ToList();
-                bookListings.ItemsSource = books;
-            }
+            NavigationPage.SetHasBackButton(this, false);
+
+
+            //using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
+            //{
+            //    conn.CreateTable<Book>();
+            //    var books = conn.Table<Book>().ToList();
+            //    bookListings.ItemsSource = books;
+            //}
         }
 
         async void OnLogoutButtonClicked(object sender, EventArgs e)
@@ -50,7 +53,7 @@ namespace TextbookExchange
             //var result = db.Table<Book>().Where()
 
 
-            await Navigation.PushAsync(new Listing());
+            //await Navigation.PushAsync(new Listing());
 
 
         }

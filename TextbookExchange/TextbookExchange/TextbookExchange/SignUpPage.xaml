@@ -3,16 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TextbookExchange.SignUpPage"
              Title="Sign Up Form">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Already have an account?" Clicked="OnBackButtonClicked" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout VerticalOptions="StartAndExpand">
-            <Entry x:Name="usernameEntry" Placeholder="Username" />
-            <Entry x:Name="emailEntry" Placeholder="Email" />
-            <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true" />
-            <Entry x:Name="confirmPasswordEntry" Placeholder="Confirm Password" IsPassword="true" />
-            <Button Text="Sign Up" Clicked="OnSignUpButtonClicked" />
+            <Entry x:Name="emailEntry" Placeholder="Email" FontSize="Small"/>
+            <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true" FontSize="Small" />
+            <Entry x:Name="confirmPasswordEntry" Placeholder="Confirm Password" IsPassword="true" FontSize="Small" />
+            <Entry x:Name="firstName" Placeholder="First Name" FontSize="Micro" />
+            <Entry x:Name="lastName" Placeholder="Last Name" FontSize="Micro" />
+            <Entry x:Name="university" Placeholder="University" FontSize="Micro"/>
+            <Button Text="Sign Up" Clicked="OnSignUpButtonClicked" FontSize="Small" />
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ContentPage.Content>

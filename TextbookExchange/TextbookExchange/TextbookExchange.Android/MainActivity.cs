@@ -20,12 +20,12 @@ namespace TextbookExchange.Droid
 
             base.OnCreate(savedInstanceState);
 
-            string fileName = "UserDatabase.db";
-            string fileLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            string fullPath = Path.Combine(fileLocation, fileName);
+            //string fileName = "UserDatabase.db";
+            //string fileLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            //string fullPath = Path.Combine(fileLocation, fileName);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App(fullPath));
+            LoadApplication(new App());
         }
 
         
