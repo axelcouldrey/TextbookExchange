@@ -16,6 +16,15 @@ namespace TextbookExchange
          
         [NotNull]
         public bool Live { get; set; }
-
+        
+       
+        public override string ToString()
+        {
+            Book book = App.Database.GetBook(BookRef);
+            
+            return "Title: " + book.Title + ", Author: " + book.Author;
+        }
     }
+
+
 }

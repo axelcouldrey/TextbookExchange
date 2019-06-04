@@ -17,7 +17,7 @@ namespace TextbookExchange
 
         public AddBook(User user)
         {
-            InitializeComponent();
+            //InitializeComponent();
 
             this.user = user;
 
@@ -28,13 +28,21 @@ namespace TextbookExchange
             BookAuthorEntry = new Entry { Placeholder = "Author" };
             BookPubDateEntry = new Entry { Placeholder = "Date" };
 
-           Button button = new Button
+            Button button = new Button
             {
                 Text = "Add",
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.Center
             };
             button.Clicked += OnSubmitButtonClicked;
+
+            StackLayout s1 = new StackLayout();
+            s1.Children.Add(BookTitleEntry);
+            s1.Children.Add(BookAuthorEntry);
+            s1.Children.Add(BookPubDateEntry);
+            s1.Children.Add(button);
+
+            this.Content = s1;
         }
 
         async void OnSubmitButtonClicked(object sender, EventArgs e)

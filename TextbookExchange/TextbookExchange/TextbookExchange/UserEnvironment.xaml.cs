@@ -35,7 +35,7 @@ namespace TextbookExchange
             logOut.Clicked += OnLogoutButtonClicked;
 
             this.Children.Add(new ProfilePage(this.user, this));
-            this.Children.Add(new MyListings(this.user));
+            this.Children.Add(new MyListings(this.user, this));
             this.Children.Add(new PubListings(this.user));
         }
 
@@ -62,12 +62,12 @@ namespace TextbookExchange
 
         public class ProfilePage : ContentPage
         {
-            UserEnvironment uE;
-            User user;
+            private User user;
+            private UserEnvironment userE;
 
-            public ProfilePage(User user, UserEnvironment uE)
+            public ProfilePage(User user, UserEnvironment usaE)
             {
-                this.uE = uE;
+                userE = usaE;
                 this.user = user;
 
                 this.Title = "Profile";
@@ -121,26 +121,27 @@ namespace TextbookExchange
 
             async void OnUpdateInfoButtonCLicked(object sender, EventArgs e)
             {
-                Navigation.InsertPageBefore(new Profile(this.user), this.uE);
+                Navigation.InsertPageBefore(new Profile(this.user), userE);
                 await Navigation.PopAsync();
             }
         }
 
         public class MyListings : ContentPage
         {
-            UserEnvironment uE;
+            UserEnvironment userEnv;
             User user;
 
-            public MyListings(User user, UserEnvironment uE)
+            public MyListings(User user, UserEnvironment usaEnv)
             {
-                this.Title = "My Listings";
+                userEnv = usaEnv;
                 this.user = user;
-                this.uE = uE;
+
+                this.Title = "My Listings";
 
                 ObservableCollection<Listing> listings = new ObservableCollection<Listing>();
                 listings = App.Database.GetAllListingWithUser(user.UserID);
 
-                var listView = new ListView();
+                var listView = new ListView() { };
                 listView.ItemsSource = listings;
 
                 Button button = new Button
@@ -160,7 +161,7 @@ namespace TextbookExchange
 
             async void OnAddBookButtonClicked(object sender, EventArgs e)
             {
-                Navigation.InsertPageBefore(new AddBook(this.user), this.uE);
+                Navigation.InsertPageBefore(new AddBook(this.user), this.userEnv);
                 await Navigation.PopAsync();
             }
         }
