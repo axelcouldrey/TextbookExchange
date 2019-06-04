@@ -9,39 +9,56 @@ namespace TextbookExchange
 {
     public partial class AddBook : ContentPage
     {
+        Entry BookTitleEntry;
+        Entry BookAuthorEntry;
+        Entry BookPubDateEntry;
 
-        public AddBook()
+        User user;
+
+        public AddBook(User user)
         {
             InitializeComponent();
+
+            this.user = user;
+
+            this.Title = "Add Book";
+            this.BackgroundColor = Color.White;
+
+            BookTitleEntry = new Entry { Placeholder = "Title" };
+            BookAuthorEntry = new Entry { Placeholder = "Author" };
+            BookPubDateEntry = new Entry { Placeholder = "Date" };
+
+           Button button = new Button
+            {
+                Text = "Add",
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.Center
+            };
+            button.Clicked += OnSubmitButtonClicked;
         }
 
         async void OnSubmitButtonClicked(object sender, EventArgs e)
         {
-            App.IsUserLoggedIn = false;
-
             Book book = new Book()
             {
-                Title = titleEntry.Text,
-                Author = authorEntry.Text,
-                Published = yearEntry.Text
+                Title = BookTitleEntry.Text,
+                Author = BookAuthorEntry.Text,
+                Published = BookPubDateEntry.Text
             };
 
-            //using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
-            //{
-            //    conn.CreateTable<Book>();
-            //    var numberOfRows = conn.Insert(book);
+            App.Database.SaveBook(book);
 
-            //    if (numberOfRows > 0)
-            //    {
-            //       await DisplayAlert("Success", "Added book", "Continue");
-            //    }
-            //    else
-            //    {
-            //        await DisplayAlert("Failed", "Fail to add book", "Continue");
-            //    }
-            //}
+            Listing listing = new Listing()
+            {
+                Live = true,
+                BookRef = book.BookID,
+                UserRef = this.user.UserID
+            };
 
-            await Navigation.PushAsync(new UserEnvironment());
+            App.Database.SaveListing(listing);
+
+            Navigation.InsertPageBefore(new UserEnvironment(this.user.UserID), this);
+            await Navigation.PopAsync();
         }
     }
 }

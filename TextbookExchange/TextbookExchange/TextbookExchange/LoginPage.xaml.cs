@@ -30,7 +30,8 @@ namespace TextbookExchange
             if (AreCredentialsCorrect(user))
             {
                 App.IsUserLoggedIn = true;
-                Navigation.InsertPageBefore(new UserEnvironment(), this);
+                user = App.Database.GetUser(user.Email);
+                Navigation.InsertPageBefore(new UserEnvironment(user.UserID), this);
                 await Navigation.PopAsync();
             }
             else

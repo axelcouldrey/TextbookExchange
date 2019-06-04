@@ -1,18 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TextbookExchange.Profile"
-             Title="Profile Form">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="My Profile Page" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-            <Label Text="First Name" />
-            <Entry x:Name="firstnameEntry" Placeholder="first name" />
-            <Label Text="Last Name" />
-            <Entry x:Name="lastnameEntry" Placeholder="last name" />
-            <Label Text="Address" />
-            <Entry x:Name="addressEntry" />
-            <Button Text="Update" Clicked="UpdateProfileButtonClicked" />
-            <Label x:Name="messageLabel" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="TextbookExchange.Profile">
 </ContentPage>

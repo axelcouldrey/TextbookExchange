@@ -50,7 +50,7 @@ namespace TextbookExchange
                 if (rootPage != null)
                 {
                     App.IsUserLoggedIn = true;
-                    Navigation.InsertPageBefore(new UserEnvironment(), this);
+                    Navigation.InsertPageBefore(new UserEnvironment(user.UserID), this);
                     await Navigation.PopAsync();
                 }
             }

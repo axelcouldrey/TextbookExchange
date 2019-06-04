@@ -28,7 +28,7 @@ namespace TextbookExchange.iOS
             string fullPath = Path.Combine(fileLocation, fileName);
 
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App(fullPath));
+            //LoadApplication(new App(fullPath));
 
             return base.FinishedLaunching(app, options);
         }

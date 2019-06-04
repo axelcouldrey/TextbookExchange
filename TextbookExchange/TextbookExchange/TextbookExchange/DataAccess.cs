@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
@@ -192,6 +193,48 @@ namespace TextbookExchange
             lock (collisionLock)
             {
                 return database.Table<Listing>().FirstOrDefault(list => list.ListingID == id);
+            }
+        }
+
+        public ObservableCollection<Listing> GetAllListingWithBook(int bookRef)
+        {
+            lock(collisionLock)
+            {
+                ObservableCollection<Listing> listings = new ObservableCollection<Listing>();
+                List<Listing> genListings = new List<Listing>();
+
+                genListings = database.Table<Listing>().ToList();
+
+                foreach (Listing listn in genListings)
+                {
+                    if (listn.BookRef == bookRef)
+                    {
+                        listings.Add(listn);
+                    }
+                }
+
+                return listings;
+            }
+        }
+
+        public ObservableCollection<Listing> GetAllListingWithUser(int userRef)
+        {
+            lock (collisionLock)
+            {
+                ObservableCollection<Listing> listings = new ObservableCollection<Listing>();
+                List<Listing> genListings = new List<Listing>();
+
+                genListings = database.Table<Listing>().ToList();
+
+                foreach(Listing listn in genListings)
+                {
+                    if(listn.UserRef == userRef)
+                    {
+                        listings.Add(listn);
+                    }
+                }
+
+                return listings;
             }
         }
 
